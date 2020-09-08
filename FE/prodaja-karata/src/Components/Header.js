@@ -15,8 +15,8 @@ class Navbar extends React.Component {
               </div>
                 <ul id="menu">
                   <li><a href="#landing">Početna</a></li>
-                  <li><a href="#mainPage">Rezervacija karata</a></li>
-                  <li><a href="#Contact">Kontakt</a></li>
+                  <li><a href="#selected">Rezervacija karata</a></li>
+                  <li><a href="#contact-form">Kontakt</a></li>
                   <li><a href="#About">O nama</a></li>
                 </ul>
               </div>
