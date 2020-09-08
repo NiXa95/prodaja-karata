@@ -14,8 +14,8 @@ class Navbar extends React.Component {
                 <a href="#home"><img src={logo} alt='logo'></img></a>
               </div>
                 <ul id="menu">
-                  <li><a href="#Landing">Početna</a></li>
-                  <li><a href="#MainPage">Rezervacija karata</a></li>
+                  <li><a href="#landing">Početna</a></li>
+                  <li><a href="#mainPage">Rezervacija karata</a></li>
                   <li><a href="#Contact">Kontakt</a></li>
                   <li><a href="#About">O nama</a></li>
                 </ul>
@@ -27,8 +27,8 @@ class Navbar extends React.Component {
               </div>
               <div className="overlay-menu">
                 <ul id="menu">
-                    <li><a href="#Landing">Početna</a></li>
-                    <li><a href="#MainPage">Rezervacija karata</a></li>
+                    <li><a href="#landing">Početna</a></li>
+                    <li><a href="#mainPage">Rezervacija karata</a></li>
                     <li><a href="#Contact">Kontakt</a></li>
                     <li><a href="#About">O nama</a></li>
                   </ul>

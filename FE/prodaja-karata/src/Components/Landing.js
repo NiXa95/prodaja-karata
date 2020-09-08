@@ -3,7 +3,7 @@ import React from 'react';
 class Landing extends React.Component {
     render() {
       return (
-        <div>
+        <div id="landing">
             <div className="landingImage">
                 <div className="landingTextPosition">
                 <span className="landingText">Dobro došli</span>
