@@ -574,6 +574,7 @@ class MainPage extends React.Component {
     return(
       <Main>
         <div id="mainPage"></div>
+        
         <SVGIcons />
         <Phone theme="light" total={total} seats={seats} toggleSeat={this.toggleSeat} removeSeat={this.removeSeat} selectedSeats={selectedSeats} />
         <Phone theme="dark" total={total} seats={seats} toggleSeat={this.toggleSeat} removeSeat={this.removeSeat} selectedSeats={selectedSeats} />
