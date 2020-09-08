@@ -15,15 +15,10 @@ class Navbar extends React.Component {
               </div>
                 <ul id="menu">
                   <li><a href="#landing">Početna</a></li>
-<<<<<<< HEAD
-                  <li><a href="#selected">Rezervacija karata</a></li>
-                  <li><a href="#contact-form">Kontakt</a></li>
-                  <li><a href="#About">O nama</a></li>
-=======
                   <li><a href="#mainPage">Rezervacija karata</a></li>
                   <li><a href="#contact">Kontakt</a></li>
                   <li><a href="#about">O nama</a></li>
->>>>>>> a9875ff334ed35810ebbc92033504ccf7323cd0d
+
                 </ul>
               </div>
           </nav>
