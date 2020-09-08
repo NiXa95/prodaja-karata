@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 // component rendering the svg block with the symbol elements used as icons
 const SVGIcons = () =>
-<svg display="none" viewBox="0 0 100 100">
+<svg id="mainPage" display="none" viewBox="0 0 100 100">
   <symbol id="available" viewBox="0 0 100 100" >
       <g
           fill="currentColor">
