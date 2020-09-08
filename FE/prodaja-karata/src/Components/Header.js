@@ -1,23 +1,23 @@
 import React from 'react';
 import logo from '../images/logo.png'
-
 class Navbar extends React.Component {
     state = {
       menuToggle: false
     }
+    
   render() {
     return (
         <header>
           <nav id="navbar" className="">
             <div className="nav-wrapper">
               <div className="logo">
-                <a href="#home"><img src={logo} alt='logo'></img></a>
+                <a href="#landing"><img src={logo} alt='logo'></img></a>
               </div>
                 <ul id="menu">
                   <li><a href="#landing">Početna</a></li>
                   <li><a href="#mainPage">Rezervacija karata</a></li>
-                  <li><a href="#Contact">Kontakt</a></li>
-                  <li><a href="#About">O nama</a></li>
+                  <li><a href="#contact">Kontakt</a></li>
+                  <li><a href="#about">O nama</a></li>
                 </ul>
               </div>
           </nav>
@@ -29,11 +29,12 @@ class Navbar extends React.Component {
                 <ul id="menu">
                     <li><a href="#landing">Početna</a></li>
                     <li><a href="#mainPage">Rezervacija karata</a></li>
-                    <li><a href="#Contact">Kontakt</a></li>
-                    <li><a href="#About">O nama</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                    <li><a href="#about">O nama</a></li>
                   </ul>
               </div>
         </header>
+        
         
 )
   }
