@@ -66,9 +66,6 @@ class Footer extends React.Component {
             >
                {/* <div className="overlay-content">
                <div className="closebtn" onClick={this.closeNav}><a>X</a></div>
-                   <a>
-                       DUVAJ ME
-                   </a>
                   
                </div> */}
             </div>
