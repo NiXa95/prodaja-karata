@@ -9,7 +9,7 @@ class Landing extends React.Component {
                 <span className="landingText">Dobro došli</span>
                 </div>
                 <div className="landingBtn">
-                  <a href="#MainPage">Naruči kartu</a>
+                  <a href="#mainPage">Naruči kartu</a>
                 </div>
             </div>
         </div>

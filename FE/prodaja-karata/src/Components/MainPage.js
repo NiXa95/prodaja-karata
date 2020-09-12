@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 // component rendering the svg block with the symbol elements used as icons
 const SVGIcons = () =>
 <svg display="none" viewBox="0 0 100 100">
-  <symbol id="available" viewBox="0 0 100 100" >
+  <symbol id="dostupno" viewBox="0 0 100 100" >
       <g
           fill="currentColor">
           <circle
@@ -19,7 +19,7 @@ const SVGIcons = () =>
           </circle>
       </g>
   </symbol>
-  <symbol id="reserved" viewBox="0 0 100 100">
+  <symbol id="rezervisano" viewBox="0 0 100 100">
       <g
           fill="currentColor">
           <circle
@@ -43,7 +43,7 @@ const SVGIcons = () =>
           </g>
       </g>
   </symbol>
-  <symbol id="selected" viewBox="0 0 100 100">
+  <symbol id="izabrano" viewBox="0 0 100 100">
       <g
           fill="currentColor">
           <circle
@@ -84,13 +84,14 @@ const HeaderTitle = styled.h1`
   font-size: 1.5rem;
   flex-grow: 1;
   font-weight: 900;
+  padding-top: 20px;
 `;
 
 // render the two buttons making use of the Icon component
 const Header = () => {
   return(
     <HeaderContainer>
-      <HeaderTitle>Izaberi sedišta:</HeaderTitle>
+      <HeaderTitle>Izaberi sedište:</HeaderTitle>
     </HeaderContainer>
   );
 }
@@ -111,20 +112,20 @@ const LegendItem = styled.div`
   svg {
     margin-right: 0.2rem;
     border-radius: 50%;
-    width: 16px;
-    height: 16px;
+    width: 30px;
+    height: 30px;
   }
 `;
 const LegendItemName = styled.span`
   text-transform: capitalize;
-  color: hsl(0, 0%, 75%);
+  color: hsl(0deg 0% 60%);
   letter-spacing: 0.05rem;
   font-weight: 700;
-  font-size: 0.6rem;
+  font-size: 18px;
 `;
 
 const Legend = () => {
-  const items = ['available', 'reserved', 'selected'];
+  const items = ['dostupno', 'rezervisano', 'izabrano'];
   return(
     <LegendContainer>
       {
@@ -218,7 +219,7 @@ const Theater = ({seats = [], toggleSeat}) => {
 const DetailsContainer = styled.div`
   display: flex;
   align-items: center;
-  margin: 1rem 0.25rem;
+  margin: 1rem 1rem 2rem 1rem;
   width: 100%;
   overflow: auto;
 
@@ -235,17 +236,17 @@ const DetailsContainer = styled.div`
 `;
 const DetailsHeading = styled.h4`
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 20px;
   padding: 0.5rem 0;
 `;
 const DetailsButton = styled.button`
   flex-shrink: 0;
   background: none;
   font-family: inherit;
-  font-size: 0.7rem;
-  color: hsl(0, 0%, 70%);
+  font-size: 1rem;
+  color: hsl(0deg 0% 60%);
   border: 1px solid currentColor;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0.5rem 0.25rem 1rem;
   border-radius: 20px;
   margin: 0 0.5rem;
   display: flex;
@@ -270,7 +271,6 @@ const Details = ({selectedSeats = [], removeSeat}) => {
   // row: 7 seat: 4 price: $16
   return(
     <DetailsContainer>
-      <DetailsHeading>Detalji:</DetailsHeading>
       {
         selectedSeats.map(selectedSeat => {
           const entries = Object.entries(selectedSeat);
@@ -292,7 +292,8 @@ const Details = ({selectedSeats = [], removeSeat}) => {
 // display the sum and the call to action in the bold button using the accent color as background
 const CheckoutContainer = styled.button`
   margin-top: 1.75rem;
-  width: 100%;
+  margin: 0 auto;
+  width: 200px;
   background: var(--accent, #fd6d8e);
   box-shadow: 0 2px 5px -4px currentColor;
   padding: 0.75rem 1rem;
@@ -315,7 +316,7 @@ const CheckoutAction = styled.span`
 const Checkout = ({total = 0}) => {
   return(
     <CheckoutContainer>
-      <CheckoutTotal>{total}$</CheckoutTotal>
+      <CheckoutTotal>{total} RSD</CheckoutTotal>
       <CheckoutAction>Checkout</CheckoutAction>
     </CheckoutContainer>
   );
@@ -348,6 +349,7 @@ const Phone = ({theme, seats, total, toggleSeat, removeSeat, selectedSeats}) => 
     <Header />
     <Legend />
     <Theater seats={seats} toggleSeat={toggleSeat} />
+    <DetailsHeading>Detalji:</DetailsHeading>
     <Details selectedSeats={selectedSeats} removeSeat={removeSeat} />
     <Checkout total={total} />
   </Screen>
@@ -375,10 +377,11 @@ class MainPage extends React.Component {
      */
     this.state = {
       seats: [],
-      possibleSeats: ['available', 'reserved'],
+      possibleSeats: ['dostupno', 'rezervisano'],
+      possibleSeats1: ['dostupno', 'rezervisano'],
       selectedSeats: [],
       total: 0,
-      price: 6,
+      price: 500,
     }
     // toggleSeat function tied to each button in the theater component
     this.toggleSeat = this.toggleSeat.bind(this);
@@ -393,17 +396,17 @@ class MainPage extends React.Component {
     const { price } = this.state;
     // compute the total as 6 bucks for each selected seat
     const total = seats.reduce((acc, curr) => {
-      const isSelected = curr === 'selected';
+      const isSelected = curr === 'izabrano';
       return isSelected ? acc + price : acc;
     }, 0);
 
     // estimate the selected seats considering the
     const selectedSeats = [];
     seats.forEach((seat, index) => {
-      if(seat === 'selected') {
+      if(seat === 'izabrano') {
         selectedSeats.push({
-          seat: index + 1,
-          price: `$${price}`
+          Sedište: index + 1,
+          price: `${price} RSD`
         })
       }
     })
@@ -423,13 +426,13 @@ class MainPage extends React.Component {
     const seatStatus = target.getAttribute('data-status');
 
     // if reserved pre-emptively return the function
-    if(seatStatus === 'reserved') {
+    if(seatStatus === 'rezervisano') {
       return false;
     } else {
       // else retrieve the previous array, include in its place the value opposite to the existing one
       const { seats: prevSeats } = this.state;
       const index = Number.parseInt(seatIndex, 10);
-      const status = seatStatus === 'available' ? 'selected' : 'available';
+      const status = seatStatus === 'dostupno' ? 'izabrano' : 'dostupno';
       // update the data attribute
       target.setAttribute('data-status', status);
       // update the seats array
@@ -448,7 +451,7 @@ class MainPage extends React.Component {
     // update the state removing the selected item
     const { seats: prevSeats } = this.state;
     const index = Number.parseInt(seatIndex, 10);
-    const seats = [...prevSeats.slice(0, index), 'available', ...prevSeats.slice(index + 1)];
+    const seats = [...prevSeats.slice(0, index), 'dostupno', ...prevSeats.slice(index + 1)];
 
     this.updateState(seats);
   }
@@ -456,14 +459,21 @@ class MainPage extends React.Component {
   // when the component mounts update the seats array filling it with 88 values using the possibleSeats options
   componentDidMount() {
     const { possibleSeats } = this.state;
+    const { possibleSeats1 } = this.state;
     const seats = [];
-    for(let i = 0; i < 100; i +=1) {
-      seats.push(possibleSeats[0]);
-    }
+    const sector = [];
     
     for(let i = 0; i < 100; i +=1) {
       seats.push(possibleSeats[0]);
+      sector.push(1);
     }
+    for(let i = 100; i < 200; i++) {
+      seats.push(possibleSeats1[0]);
+      sector.push(2);
+      console.log(sector);
+    }
+    
+    
     this.setState({
       seats,
     })
@@ -475,7 +485,10 @@ class MainPage extends React.Component {
     return(
       <Main>
         <div id="mainPage"></div>
-        
+        {/* <div className="firstSector"></div>
+        <div className="secondSector"></div>
+        <div className="thirdSector"></div>
+        <div className="FourthSector"></div> */}
         <SVGIcons />
         <Phone theme="light" total={total} seats={seats} toggleSeat={this.toggleSeat} removeSeat={this.removeSeat} selectedSeats={selectedSeats} />
       </Main>

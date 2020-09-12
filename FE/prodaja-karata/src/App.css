@@ -67,6 +67,7 @@ html {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 body {
@@ -97,9 +98,12 @@ a {
 }
 
 .nav-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   margin: auto;
   text-align: center;
-  width: 85%;
+  width: 90%;
 } @media(max-width: 768px) {
     .nav-wrapper {
       width: 90%;
@@ -112,7 +116,6 @@ a {
 
 
 .logo {
-  float: left;
   margin-left: 28px;
   font-size: 1.5em;
   height: 60px;
@@ -123,23 +126,16 @@ a {
   }
 
 #navbar ul {
-  display: inline-block;
-  float: right;
   list-style: none;
-  /* margin-right: 14px; */
   margin-top: -2px;
   text-align: right;
   transition: transform 0.5s ease-out;
   -webkit-transition: transform 0.5s ease-out;
-} @media(max-width: 640px) {
+} @media(max-width: 920px) {
     #navbar ul {
       display: none;
     }
-  } @media(orientation: landscape) {
-      #navbar ul {
-        display: inline-block;
-      }
-    }
+  }
 
 #navbar li {
   display: inline-block;
@@ -205,7 +201,7 @@ a {
 /*======================================================
                     Mobile Menu Menu Icon
   ======================================================*/
-@media(max-width: 640px) {
+@media(max-width: 920px) {
   .menuIcon {
     cursor: pointer;
     display: block;
@@ -259,7 +255,7 @@ a {
   }
 
   /* Bars Shadows */
-  .icon-bars.overlay {
+  /* .icon-bars.overlay {
     background: rgb(97, 114, 129);
     background: rgb(183, 199, 211);
     width: 20px;
@@ -305,7 +301,7 @@ a {
         0% {width: 0px}
         50% {width: 15px}
         100% {width: 0px}
-      }
+      } */
 
 
   /* Toggle Menu Icon */
@@ -430,16 +426,19 @@ a {
   ======================================================*/
   @import url("https://fonts.googleapis.com/css?family=Lato:400,700,900");
 
-  .available {
+  .dostupno {
     color: #2dcff8;
   }
-  .reserved {
+  .rezervisano {
     color: hsl(0, 0%, 95%);
   }
-  .selected {
+  .izabrano {
     color: var(--accent, #fd6d8e);
   }
 
+  .break {
+    height: 20px;
+  }
     /*======================================================
                     Contact
   ======================================================*/
@@ -473,7 +472,7 @@ a {
     justify-content: center;
   }
   .contact #contact-form .form-group label{
-    padding-right: 50px;
+    padding-right: 30px;
     font-size: 25px;
   }
   
@@ -490,10 +489,11 @@ a {
   .contact #contact-form .btn{
     color:#fff;
     background-color: red;
+    font-size: 16px;
     width: 100px;
     text-align: center;
-    margin: 0 auto;
-    padding: 10px 30px;
+    /* margin: 0 auto; */
+    padding: 10px 20px;
     border: 1px solid #fff;
     border-radius: 10px;
   }
@@ -569,8 +569,8 @@ a {
 .overlay-login {
   color: #fff;
   height: 100%;
-  max-height: 80%;
-  max-width: 30%;
+  max-height: 500px;
+  max-width: 500px;
   width: 0;
   position: fixed;
   z-index: 1;
@@ -579,7 +579,7 @@ a {
   background-color: rgba(0,0,0, 0.9);
   overflow-x: hidden;
   /* transition: top 10.5s, bottom 10.5s; */
-  border-radius: 10px;
+  border-radius: 20px;
   
 
 }
@@ -587,7 +587,7 @@ a {
 .overlay-content {
   position: relative;
   top: 100px;
-  width: 300px;
+  width: 400px;
   text-align: center;
   margin: 0 auto;
   
@@ -598,6 +598,7 @@ a {
   text-decoration: none;
   font-size: 30px;
   color: #818181;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   /* display: block; */
   transition: 0.3s;
   position: absolute;
@@ -611,6 +612,8 @@ a {
 }
 
 .adminLoginForm{
+  height: auto;
+  width: 400px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -624,9 +627,10 @@ a {
   padding-bottom: 15px;
 }
 .adminLoginForm input{
+  font-size: 16px;
   max-width: 300px;
   padding: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   border-radius: 5px;
 }
 .adminLoginForm .submit{
