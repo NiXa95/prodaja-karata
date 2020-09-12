@@ -77,7 +77,7 @@ class Footer extends React.Component {
                         //handle error condition
                         }
                         <h1>Admin login</h1>
-                        <label>User Name:</label>
+                        <label>Admin name:</label>
                         <input type="text" data-test="username" value={this.state.username} onChange={this.handleChangeEvents} />
                         <label>Password:</label>
                         <input type="password" data-test="password" value={this.state.password} onChange={this. handlePasswordChange } />
