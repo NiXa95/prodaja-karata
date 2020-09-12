@@ -61,48 +61,6 @@ const SVGIcons = () =>
           </text>
       </g>
   </symbol>
-
-  <symbol id="plus" viewBox="0 0 100 100">
-      <g
-          stroke="currentColor"
-          strokeWidth="10"
-          fill="none">
-          <path
-              d="M 20 50 h 60">
-          </path>
-          <path
-              d="M 50 20 v 60">
-          </path>
-      </g>
-  </symbol>
-
-  <symbol id="minus" viewBox="0 0 100 100">
-      <g
-          stroke="currentColor"
-          strokeWidth="10"
-          fill="none">
-          <path
-              d="M 20 50 h 60">
-          </path>
-      </g>
-  </symbol>
-
-  <symbol id="close" viewBox="0 0 100 100">
-        <g
-          stroke="currentColor"
-          strokeWidth="10"
-          fill="none"
-          transform="translate(50 50) rotate(45)">
-          <g transform="translate(-50 -50)">
-              <path
-                  d="M 10 50 h 80">
-              </path>
-              <path
-                  d="M 50 10 v 80">
-              </path>
-          </g>
-      </g>
-  </symbol>
 </svg>;
 
 
@@ -115,57 +73,24 @@ const Icon = ({href, size = 100}) =>
 
 
 
-// header component, displaying a heading and two buttons
+// header component and displaying a heading 
 const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   margin-top: 1rem;
   position: relative;
-
-  &:before {
-    position: absolute;
-    content: "";
-    bottom: calc(100% + 1rem);
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1rem;
-    height: 0.3rem;
-    border-radius: 15px;
-    background: hsl(0, 0%, 90%);
-  }
 `;
 const HeaderTitle = styled.h1`
   font-size: 1.5rem;
   flex-grow: 1;
   font-weight: 900;
 `;
-const HeaderButton = styled.button`
-  color: inherit;
-  background: none;
-  border: 1px solid hsl(0, 0%, 92%);
-  border-radius: 50%;
-  margin: 0 0.25rem;
-  width: 28px;
-  height: 28px;
-  padding: 0.35rem;
-
-  svg {
-    width: 100%;
-    height: 100%;
-  }
-`;
 
 // render the two buttons making use of the Icon component
 const Header = () => {
-  const buttons = ['plus', 'minus'];
   return(
     <HeaderContainer>
-      <HeaderTitle>Choose Seats</HeaderTitle>
-      {
-        buttons.map(button => <HeaderButton key={button}>
-          <Icon href={button} size="28" />
-        </HeaderButton>)
-      }
+      <HeaderTitle>Izaberi sedišta:</HeaderTitle>
     </HeaderContainer>
   );
 }
@@ -222,41 +147,13 @@ const TheaterContainer = styled.div`
   margin: 1.75rem 0;
 `;
 
-const TheaterScreen = styled.p`
-  text-align: center;
-  text-transform: uppercase;
-  padding: 0.3rem 1rem;
-  color: hsl(0, 0%, 80%);
-  border-radius: 20px;
-  border: 1px solid currentColor;
-  font-size: 0.5rem;
-  letter-spacing: 0.1rem;
-  background: inherit;
-  position: relative;
-
-  &:before, &:after {
-    position: absolute;
-    content: "";
-    top: 50%;
-    transform: translate(0%, -50%);
-    width: 70px;
-    height: 1px;
-    background: currentColor;
-  }
-  &:before {
-    right: 100%;
-  }
-  &:after {
-    left: 100%;
-  }
-`;
 
 const TheaterSeats = styled.div`
   margin-top: 1.5rem;
   width: 100%;
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(10, 18px);
+  grid-template-columns: repeat(20, 18px);
   grid-template-rows: repeat(10, 18px);
   grid-gap: 0.75rem 0.3rem;
   grid-auto-flow: dense;
@@ -298,11 +195,10 @@ const Seat = styled.button`
 // render the paragraph and the grid of seats with the scheduled whitespace
 const Theater = ({seats = [], toggleSeat}) => {
   // four FillerSeat components, occupying the selected space in the group
-  const FillerSeats = Array(4).fill('').map((item, i) => <FillerSeat key={i}/>);
+  const FillerSeats = Array(0).fill('').map((item, i) => <FillerSeat key={i}/>);
   const Seats = seats.map((seat, i) => <Seat onClick={toggleSeat} data-index={i} data-status={seat} key={i}><Icon href={seat} size="16" /></Seat>)
   return(
     <TheaterContainer>
-      <TheaterScreen>Screen</TheaterScreen>
       <TheaterSeats>
         {
           FillerSeats
@@ -374,7 +270,7 @@ const Details = ({selectedSeats = [], removeSeat}) => {
   // row: 7 seat: 4 price: $16
   return(
     <DetailsContainer>
-      <DetailsHeading>Details</DetailsHeading>
+      <DetailsHeading>Detalji:</DetailsHeading>
       {
         selectedSeats.map(selectedSeat => {
           const entries = Object.entries(selectedSeat);
@@ -434,14 +330,14 @@ const Screen = styled.div`
   --color: ${({theme}) => theme === 'light' ? '#2c2f62' : '#eee'};
   --background: ${({theme}) => theme === 'light' ? '#fff' : '#2c2f62'};
   --accent: ${({theme}) => theme === 'light' ? '#fd6d8e' : '#fcb43c'};
-  border-radius: 30px;
-  width: 300px;
+  border-radius: 10px;
+  width: 100%;
   min-height: 500px;
   color: var(--color, #2c2f62);
   background: var(--background, #ffffff);
   padding: 2rem 2rem 1.25rem;
   box-shadow: 0 2px 10px -8px hsla(0, 0%, 0%, 0.4);
-  margin: 1rem;
+  margin: 0.5rem;
 `;
 
 // render the components making up the screen
@@ -465,7 +361,7 @@ const Main = styled.main`
   flex-wrap: wrap;
 `;
 // create a function which returns a random item from an array
-const randomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
+// const randomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 // app component to manage the state of the application and render the phone screen(s)
 class MainPage extends React.Component {
@@ -506,7 +402,7 @@ class MainPage extends React.Component {
     seats.forEach((seat, index) => {
       if(seat === 'selected') {
         selectedSeats.push({
-          seat: index,
+          seat: index + 1,
           price: `$${price}`
         })
       }
@@ -561,13 +457,18 @@ class MainPage extends React.Component {
   componentDidMount() {
     const { possibleSeats } = this.state;
     const seats = [];
-    for(let i = 0; i < 88; i +=1) {
-      seats.push(randomItem(possibleSeats));
+    for(let i = 0; i < 100; i +=1) {
+      seats.push(possibleSeats[0]);
+    }
+    
+    for(let i = 0; i < 100; i +=1) {
+      seats.push(possibleSeats[0]);
     }
     this.setState({
       seats,
     })
   }
+
   // render the phone screen(s) in the wrapping container, following the SVG component including the symbol elements for the icons
   render() {
     const { seats, total, selectedSeats } = this.state;
@@ -577,7 +478,6 @@ class MainPage extends React.Component {
         
         <SVGIcons />
         <Phone theme="light" total={total} seats={seats} toggleSeat={this.toggleSeat} removeSeat={this.removeSeat} selectedSeats={selectedSeats} />
-        <Phone theme="dark" total={total} seats={seats} toggleSeat={this.toggleSeat} removeSeat={this.removeSeat} selectedSeats={selectedSeats} />
       </Main>
     );
   }
